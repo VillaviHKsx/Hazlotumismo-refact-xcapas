@@ -1,6 +1,6 @@
 // Esta capa se encarga de manejar el request que llega del cliente y darle ua respuesta
 // En el acaso de que necesitemos podemos hacer validaciones
-import { getToyById as getToyByIdService, getPlayers, savePlayer, updateToy as updateToyService, deleteToy as deleteToyService} from '../services/players.service.js';
+import { getPlayerById as getPlayerByIdService, getPlayers, savePlayer, updatePlayer as updatePlayerService, deleteToy as deleteToyService} from '../services/players.service.js';
 import { toySchema, toyUpdateSchema } from '../schemas/players.schema.js';
 import { getPlayersFromDb } from '../repositories/players.repository.js';
 //import { object } from 'joi';
@@ -29,20 +29,20 @@ const createPlayer = async (req, res) => {
     }
 };
 
-const getToyById = async (req, res) => {
+const getPlayerById = async (req, res) => {
     try {
-        const toy = await getToyByIdService(req.params.id);      
-        if (!toy) {
+        const player = await getPlayerByIdService(req.params.id);      
+        if (!player) {
             return res.status(404).json({ message: 'Juguete no encontrado'});
         }
-        res.json(toy);
+        res.json(player);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener el juguete'});
     }
 };
 
 // Vamos actualizar el juguete
-const updateToy = async (req, res) => {
+const updatePlayer = async (req, res) => {
     try{
         //Validaciones Controllers
     const {error} = toyUpdateSchema.validate(req.body, { convert: false});
@@ -53,10 +53,10 @@ const updateToy = async (req, res) => {
     const { id } = req.params;
 
     //Llamado a la capa de servicios
-    const updateToyResult = await updateToyService(id, req.body);
+    const updatePlayerResult = await updatePlayerService(id, req.body);
 
     //Capa de controllers
-    if (!updateToyResult) {
+    if (!updatePlayerResult) {
         return res.status(404).json({ message: 'Juguete no encontrado'});
     }
 
@@ -85,4 +85,4 @@ const deleteToy = async (req, res) => {
     }
 }
 
-export { getAllPlayers, createPlayer, getToyById, updateToy, deleteToy };
+export { getAllPlayers, createPlayer, getPlayerById, updatePlayer, deleteToy };
