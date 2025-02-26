@@ -7,7 +7,7 @@ const getPlayersFromDb = async () => {
 }
 
 const savePlayersToDB = async (players) => {
-    await fs.writeFile('./data/players.json', JSON.stringify(toys, null, 2));
+    await fs.writeFile('./data/players.json', JSON.stringify(players, null, 2));
 };
 
 export { getPlayersFromDb, savePlayersToDB };

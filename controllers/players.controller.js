@@ -1,6 +1,6 @@
 // Esta capa se encarga de manejar el request que llega del cliente y darle ua respuesta
 // En el acaso de que necesitemos podemos hacer validaciones
-import { getToyById as getToyByIdService, getPlayers, saveToy, updateToy as updateToyService, deleteToy as deleteToyService} from '../services/players.service.js';
+import { getToyById as getToyByIdService, getPlayers, savePlayer, updateToy as updateToyService, deleteToy as deleteToyService} from '../services/players.service.js';
 import { toySchema, toyUpdateSchema } from '../schemas/players.schema.js';
 import { getPlayersFromDb } from '../repositories/players.repository.js';
 //import { object } from 'joi';
@@ -15,14 +15,14 @@ const getAllPlayers = async (req, res) => {
     }
 };
 
-const createToy = async (req, res) => {
+const createPlayer = async (req, res) => {
     try{ 
         const {error} = toySchema.validate(req.body, { convert: false});
         if (error){
             return res.status(400).json({ error: error.details[0].message });
         }
         // Vamos a llamar a la capa de servicios
-        await saveToy(req.body);
+        await savePlayer(req.body);
         res.status(201).json({ message: 'Juguete creado con exito'});
     } catch (error) {
         res.status(500).json({ message: 'Error al crear el juguete'});
@@ -85,4 +85,4 @@ const deleteToy = async (req, res) => {
     }
 }
 
-export { getAllPlayers, createToy, getToyById, updateToy, deleteToy };
+export { getAllPlayers, createPlayer, getToyById, updateToy, deleteToy };

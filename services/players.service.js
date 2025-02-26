@@ -8,15 +8,15 @@ const getPlayers = async () => {
     return players;
 };
 
-const saveToy = async (toyToSave) => {
+const savePlayer = async (playerToSave) => {
     //Logica de negocio
     const uuid = uuidv4();
     //Llamado a la capa de repositorio
-    const toys = await getPlayersFromDb();
+    const players = await getPlayersFromDb();
     //Logica de negocio   
-    toys.push({id: uuid, ...toyToSave});
+    players.push({id: uuid, ...playerToSave});
    //Llamado a la capa de repositorio
-    await savePlayersToDB(toys);
+    await savePlayersToDB(players);
 };
 
 const getToyById = async (id) => {
@@ -60,4 +60,4 @@ const deleteToy = async (id) => {
     return true;
 };
 
-export { getPlayers, saveToy, getToyById, updateToy, deleteToy };
+export { getPlayers, savePlayer, getToyById, updateToy, deleteToy };

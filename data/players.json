@@ -19,5 +19,19 @@
     "last_name": "Gutierrez S",
     "age": 35,
     "Team": "Chicago Bulls"
+  },
+  {
+    "id": "8418ccfd-2033-4b64-a1f2-a8e1c1fed814",
+    "first_name": "Diego",
+    "last_name": "Perez",
+    "age": 30,
+    "Team": "Lakers"
+  },
+  {
+    "id": "d308870e-72b9-4ca1-b71e-ae5ac3486c51",
+    "first_name": "Diego",
+    "last_name": "Perez",
+    "age": 30,
+    "Team": "Lakers"
   }
 ]

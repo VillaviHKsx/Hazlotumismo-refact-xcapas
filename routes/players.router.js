@@ -2,12 +2,12 @@
 // El tipo de verbo http, la ruta y aplicación de middlawres en caso de necesitar
 // Debemos utilizar Router de express
 import express from 'express';
-import { getAllPlayers, createToy, getToyById, updateToy, deleteToy } from '../controllers/players.controller.js';
+import { getAllPlayers, getToyById, updateToy, deleteToy, createPlayer } from '../controllers/players.controller.js';
 
 const router = express.Router();
 
 router.get('/', getAllPlayers);
-//router.post('/', createToy);
+router.post('/', createPlayer);
 //router.get('/:id', getToyById);
 //router.patch('/:id', updateToy);
 //router.delete('/:id', deleteToy);
